@@ -22,6 +22,7 @@ public class User implements Serializable {
 	private String address = null;
 	private String tel = null;
 	
+	
 	private String password = null;
 	private String state = null;
 	private String credit = null;
