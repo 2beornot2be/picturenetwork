@@ -96,7 +96,7 @@ public class ModelBean implements ModelBeanRemote, ModelBeanLocal {
 		begin();
 		if(em != null)
 		{
-			em.remove(Model);
+			em.remove(em.contains(Model) ? Model : em.merge(Model));
 			return true;
 		}
 		return false;
@@ -111,7 +111,7 @@ public class ModelBean implements ModelBeanRemote, ModelBeanLocal {
 			Model m = findModel(id);
 			if(m != null)
 			{
-				em.remove(m);
+				em.remove(em.contains(m) ? m : em.merge(m));
 				return true;
 			}
 		}
