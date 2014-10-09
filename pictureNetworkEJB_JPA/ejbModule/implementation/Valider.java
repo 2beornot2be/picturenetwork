@@ -11,7 +11,7 @@ public class Valider {
 		boolean  ok=true;
 		for (String  word : temp) {
 			
-			//**********************
+			//**********************qoisdiqs
 				
 			if(ok==false)
 					return ok;
