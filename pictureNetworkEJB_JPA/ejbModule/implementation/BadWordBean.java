@@ -25,7 +25,7 @@ public class BadWordBean implements BadWordBeanLocal, BadWordBeanRemote {
 			em = emf.createEntityManager();
 		}
 	}
-//qsdqdqdqsdqsdqqdqqdqsd
+//qsdqdqdqsdqsdqqdq
 	@Override
 	public Boolean addBadWord(BadWorld badword) {
 

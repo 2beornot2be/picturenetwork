@@ -14,7 +14,7 @@ public interface BadWordBeanLocal {
 	public BadWorld findBadWord(int id);
 	
 	public List<BadWorld> findAllBadWorld();
-	//qsdqsdqsdqsdkjhk
+	//qsdqsdqsdqs
 	
 	
 
