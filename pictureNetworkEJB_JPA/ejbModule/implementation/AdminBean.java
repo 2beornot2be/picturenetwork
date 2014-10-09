@@ -100,7 +100,7 @@ public class AdminBean implements AdminBeanRemote, AdminBeanLocal {
 		}
 		if(em != null)
 		{
-			em.remove(Admin);
+			em.remove(em.contains(Admin) ? Admin : em.merge(Admin));
 			return true;
 		}
 		
