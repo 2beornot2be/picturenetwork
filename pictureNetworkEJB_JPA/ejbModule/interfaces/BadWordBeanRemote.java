@@ -16,4 +16,3 @@ public interface BadWordBeanRemote {
 	
 	public List<BadWorld> findAllBadWorld();
 }
-//qsdqsdqsdq
