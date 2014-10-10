@@ -116,7 +116,7 @@ public class UserBean implements UserBeanRemote, UserBeanLocal {
 		}
 		if(em != null)
 		{
-			em.remove(User);
+			em.remove(em.contains(User) ? User : em.merge(User));
 			return true;
 		}
 		

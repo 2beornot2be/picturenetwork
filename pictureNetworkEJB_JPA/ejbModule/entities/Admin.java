@@ -11,7 +11,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+//test0
 public class Admin extends User implements Serializable {
 
 	
