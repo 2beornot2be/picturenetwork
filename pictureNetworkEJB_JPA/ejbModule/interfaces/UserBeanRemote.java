@@ -10,6 +10,7 @@ import entities.User;
 @Remote
 public interface UserBeanRemote 
 {
+	// ok
 	public boolean addUser(User User);
 	public User authenticateUser(String first, String last, String Password);
 	public boolean updateUser(User User);
