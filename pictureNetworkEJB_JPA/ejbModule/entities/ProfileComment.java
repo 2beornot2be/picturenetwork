@@ -32,7 +32,7 @@ public class ProfileComment extends Comment implements Serializable {
 	
 	public ProfileComment(int id, String content, Date dateCreated,
 			Date dateModified, User sender,User reciever, Profile userProfile) {
-		super(id, content, dateCreated, dateModified, sender);
+		super(id, content, new Date(), new Date(), sender);
 		this.reciever = reciever;
 		this.userProfile = userProfile;
 		// TODO Auto-generated constructor stub
@@ -43,7 +43,7 @@ public class ProfileComment extends Comment implements Serializable {
 
 	public ProfileComment(int id, String content, Date dateCreated,
 			Date dateModified,User reciever, Profile userProfile) {
-		super(id, content, dateCreated, dateModified);
+		super(id, content, new Date(), new Date());
 		this.reciever = reciever;
 		this.userProfile = userProfile;
 		// TODO Auto-generated constructor stub
@@ -54,7 +54,7 @@ public class ProfileComment extends Comment implements Serializable {
 
 	public ProfileComment(String content, Date dateCreated, Date dateModified,
 			User sender,User reciever, Profile userProfile) {
-		super(content, dateCreated, dateModified, sender);
+		super(content, new Date(), new Date(), sender);
 		this.reciever = reciever;
 		this.userProfile = userProfile;
 		// TODO Auto-generated constructor stub
