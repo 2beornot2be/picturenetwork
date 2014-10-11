@@ -46,8 +46,14 @@ public class BadWordBean implements BadWordBeanLocal, BadWordBeanRemote {
 
 	@Override
 	public Boolean removeBadWord(BadWorld badword) {
-		em.remove(badword);
-		return true;
+		if (emf != null) {
+			em = emf.createEntityManager();
+		}
+		if (em != null) {
+			em.remove(em.contains(badword) ? badword : em.merge(badword));
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -57,6 +63,7 @@ public class BadWordBean implements BadWordBeanLocal, BadWordBeanRemote {
 		}
 		if (em != null) {
 			em.merge(badword);
+			System.out.println("updated badword " + badword.getDescription());
 			return true;
 		}
 
