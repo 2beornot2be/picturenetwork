@@ -7,6 +7,9 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -25,7 +28,35 @@ public class BadWordBean implements BadWordBeanLocal, BadWordBeanRemote {
 			em = emf.createEntityManager();
 		}
 	}
+	@Override
+	public boolean valider(String message) {
+		String temp[] = message.split(" ");
+		boolean ok = true;
+		
+		try {
+			
+			List<BadWorld>bads = findAllBadWorld();
+			for (BadWorld bad : bads) {
 
+				for (String word : temp) {
+
+					if (word.equalsIgnoreCase( bad.getDescription()) ) {
+						ok = false;
+						System.out.println("bad word detected");
+						return ok;
+					}
+					
+				}
+
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // c un proxy , link to the object
+
+		return ok;
+	}
 	@Override
 	public Boolean addBadWord(BadWorld badword) {
 

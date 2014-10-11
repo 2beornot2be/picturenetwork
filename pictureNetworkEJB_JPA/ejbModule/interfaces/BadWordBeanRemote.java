@@ -13,6 +13,6 @@ public interface BadWordBeanRemote {
 	public Boolean updateBadWord(BadWorld badword);
 	public boolean removeBadWord(int id);
 	public BadWorld findBadWord(int id);
-	
+	public boolean valider(String message);
 	public List<BadWorld> findAllBadWorld();
 }
