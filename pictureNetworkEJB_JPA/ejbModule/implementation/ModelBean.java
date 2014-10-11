@@ -67,7 +67,8 @@ public class ModelBean implements ModelBeanRemote, ModelBeanLocal {
 		begin();
 		if(em != null)
 		{
-			String query = String.format("select  u from User u where u.firstName = '%s' and  u.lastName = '%s' and u.password = '%s'", first, last, Password);
+			
+			String query = String.format("select  u from User u where u.firstName = '%s' and  u.lastName = '%s' and u.password = '%s' and u.modelState_Activation = '%s'", first, last, Password, ModelState_Activation.ACTIVATED.toString());
 			List<Model> models = em.createQuery(query).getResultList();
 			if(models.size() >= 1)
 			{
