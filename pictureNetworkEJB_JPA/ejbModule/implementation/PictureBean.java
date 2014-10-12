@@ -79,11 +79,17 @@ begin();
 	@Override
 	public List<Picture> findBySection(String section) {
 		begin();
-		List<Picture>pictures=null;
-		Query query=(Query) em.createQuery("select t from Picture t where t.section",Picture.class);
-		((javax.persistence.Query) query).setParameter("n", section);
-		pictures=(List<Picture>) ((javax.persistence.Query) query).getResultList();
-		return(pictures);
+	
+		List<Picture> pictures = null;
+		if(em != null)
+		{
+			String query = String.format("select  u from Picture u where u.Section = '%s'", section);
+			pictures =  (List<Picture>) em.createQuery(query).getResultList();
+			
+		}
+		
+		return pictures;
+		
 	}
 		
 	
@@ -91,11 +97,34 @@ begin();
 	@Override
 	public List<Picture> findByName(String name) {
 		begin();
-		List<Picture>pictures=null;
-		Query query=(Query) em.createQuery("select t from Picture t where t.name",Picture.class);
-		((javax.persistence.Query) query).setParameter("n", name);
-		pictures=(List<Picture>) ((javax.persistence.Query) query).getResultList();
-		return(pictures);
+		List<Picture> pictures = null;
+		if(em != null)
+		{
+			String query = String.format("select  u from Picture u where u.name = '%s'", name);
+			pictures =  (List<Picture>) em.createQuery(query).getResultList();
+			
+		}
+		
+		return pictures;
+		
 	}
+	
+	@Override
+	public List<Picture> findBySubcategory(String pictureSubCategory) {
+		begin();
+		List<Picture> pictures = null;
+		if(em != null)
+		{
+			String query = String.format("select  u from Picture u where u.pictureSubCategory.name = '%s'", pictureSubCategory );
+			pictures =  (List<Picture>) em.createQuery(query).getResultList();
+			
+		}
+		
+		return pictures;
+		
+		
+	}
+	
+	
 
 }
