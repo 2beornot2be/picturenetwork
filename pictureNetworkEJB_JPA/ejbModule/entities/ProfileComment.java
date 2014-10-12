@@ -29,7 +29,23 @@ public class ProfileComment extends Comment implements Serializable {
 		super();
 	}
 	
-	
+
+
+	public ProfileComment(User reciever) {
+		super();
+		this.reciever = reciever;
+	}
+
+	public ProfileComment(String content, Date dateCreated, Date dateModified,
+			User sender, String credit, User reciever) {
+		super(content, dateCreated, dateModified, sender, credit);
+		this.reciever = reciever;
+	}
+
+
+
+
+
 	public ProfileComment(int id, String content, Date dateCreated,
 			Date dateModified, User sender,User reciever, Profile userProfile) {
 		super(id, content, new Date(), new Date(), sender);
@@ -59,6 +75,15 @@ public class ProfileComment extends Comment implements Serializable {
 		this.userProfile = userProfile;
 		// TODO Auto-generated constructor stub
 	}
+	
+	public ProfileComment(String content, Date dateCreated, Date dateModified,
+			User sender,User reciever) {
+		super(content, dateCreated, dateModified, sender);
+		this.reciever = reciever;
+		
+		// TODO Auto-generated constructor stub
+	}
+
 
 
 

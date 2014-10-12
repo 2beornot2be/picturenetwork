@@ -57,9 +57,17 @@ public class SubCategory implements Serializable {
 		this.name = name;
 		this.parentCategory = parentCategory;
 	}
+	
 
 	
 	
+
+
+	public SubCategory(String name) {
+		super();
+		this.name = name;
+	}
+
 
 
 	public SubCategory(String name, Category parentCategory) {
