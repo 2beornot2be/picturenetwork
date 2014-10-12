@@ -12,13 +12,14 @@ import javax.persistence.*;
  *
  */
 @Entity
-//ok
+
 public class Comment implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String content;
+
 	@Temporal(TemporalType.DATE)
 	private Date dateCreated;
 	@Temporal(TemporalType.DATE)
@@ -26,18 +27,53 @@ public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@ManyToOne
 	private User sender;
+	private String credit;
 	
+	
+	
+
+
+
 	public Comment() {
 		super();
 	}   
 	
 	
+	
+
 	public Comment(String content, Date dateCreated, Date dateModified,
-			User sender) {
+			User sender, String string) {
 		super();
 		this.content = content;
 		this.dateCreated = dateCreated;
 		this.dateModified = dateModified;
+		this.sender = sender;
+		this.credit = string;
+	}
+
+
+
+
+	public Comment(int id, String content, Date dateCreated, Date dateModified,
+			User sender, String credit) {
+		super();
+		this.id = id;
+		this.content = content;
+		this.dateCreated = dateCreated;
+		this.dateModified = dateModified;
+		this.sender = sender;
+		this.credit = credit;
+	}
+
+
+
+
+	public Comment(String content, Date dateCreated, Date dateModified,
+			User sender) {
+		super();
+		this.content = content;
+		this.dateCreated = new Date();
+		this.dateModified = new Date();
 		this.sender = sender;
 	}
 
@@ -47,8 +83,8 @@ public class Comment implements Serializable {
 		super();
 		this.id = id;
 		this.content = content;
-		this.dateCreated = dateCreated;
-		this.dateModified = dateModified;
+		this.dateCreated = new Date();
+		this.dateModified = new Date();
 		this.sender = sender;
 	}
 
@@ -56,8 +92,8 @@ public class Comment implements Serializable {
 	public Comment(String content, Date dateCreated, Date dateModified) {
 		super();
 		this.content = content;
-		this.dateCreated = dateCreated;
-		this.dateModified = dateModified;
+		this.dateCreated = new Date();
+		this.dateModified = new Date();
 	}
 
 
@@ -65,10 +101,15 @@ public class Comment implements Serializable {
 		super();
 		this.id = id;
 		this.content = content;
-		this.dateCreated = dateCreated;
-		this.dateModified = dateModified;
+		this.dateCreated = new Date();
+		this.dateModified = new Date();
 	}
+	
 
+
+
+
+	
 
 	public int getId() {
 		return this.id;
@@ -108,5 +149,21 @@ public class Comment implements Serializable {
 	public void setSender(User sender) {
 		this.sender = sender;
 	}
+	
+	public String getCredit() {
+		return credit;
+	}
+
+
+
+
+	public void setCredit(String credit) {
+		this.credit = credit;
+	}
+
+
+
+
+	
    
 }
