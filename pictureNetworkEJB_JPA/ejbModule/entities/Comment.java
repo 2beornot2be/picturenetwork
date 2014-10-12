@@ -12,7 +12,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+//ok
 public class Comment implements Serializable {
 
 	@Id
