@@ -34,8 +34,152 @@ public class Picture implements Serializable {
 	@OneToMany
 	private List<Comment> PictureComments = null;
 	private String url;
+	@Lob
+	private byte[] content;
+	private String activation;
 	
 	
+	
+	/**
+	 * @param name
+	 * @param description
+	 * @param pictureSubCategory
+	 * @param section
+	 * @param pictureOwner
+	 * @param dateAdded
+	 * @param pictureComments
+	 * @param url
+	 * @param content
+	 * @param activation
+	 */
+	public Picture(String name, String description,
+			SubCategory pictureSubCategory, String section, User pictureOwner,
+			Date dateAdded, List<Comment> pictureComments, String url,
+			byte[] content, String activation) {
+		super();
+		this.name = name;
+		Description = description;
+		this.pictureSubCategory = pictureSubCategory;
+		Section = section;
+		this.pictureOwner = pictureOwner;
+		this.dateAdded = dateAdded;
+		PictureComments = pictureComments;
+		this.url = url;
+		this.content = content;
+		this.activation = activation;
+	}
+
+
+	/**
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param pictureSubCategory
+	 * @param section
+	 * @param pictureOwner
+	 * @param dateAdded
+	 * @param pictureComments
+	 * @param url
+	 * @param content
+	 * @param activation
+	 */
+	public Picture(int id, String name, String description,
+			SubCategory pictureSubCategory, String section, User pictureOwner,
+			Date dateAdded, List<Comment> pictureComments, String url,
+			byte[] content, String activation) {
+		super();
+		this.id = id;
+		this.name = name;
+		Description = description;
+		this.pictureSubCategory = pictureSubCategory;
+		Section = section;
+		this.pictureOwner = pictureOwner;
+		this.dateAdded = dateAdded;
+		PictureComments = pictureComments;
+		this.url = url;
+		this.content = content;
+		this.activation = activation;
+	}
+
+
+	public String getActivation() {
+		return activation;
+	}
+
+
+	public void setActivation(String activation) {
+		this.activation = activation;
+	}
+
+
+	/**
+	 * @param name
+	 * @param description
+	 * @param pictureSubCategory
+	 * @param section
+	 * @param pictureOwner
+	 * @param dateAdded
+	 * @param pictureComments
+	 * @param url
+	 * @param content
+	 */
+	public Picture(String name, String description,
+			SubCategory pictureSubCategory, String section, User pictureOwner,
+			Date dateAdded, List<Comment> pictureComments, String url,
+			byte[] content) {
+		super();
+		this.name = name;
+		Description = description;
+		this.pictureSubCategory = pictureSubCategory;
+		Section = section;
+		this.pictureOwner = pictureOwner;
+		this.dateAdded = dateAdded;
+		PictureComments = pictureComments;
+		this.url = url;
+		this.content = content;
+	}
+
+
+	/**
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param pictureSubCategory
+	 * @param section
+	 * @param pictureOwner
+	 * @param dateAdded
+	 * @param pictureComments
+	 * @param url
+	 * @param content
+	 */
+	public Picture(int id, String name, String description,
+			SubCategory pictureSubCategory, String section, User pictureOwner,
+			Date dateAdded, List<Comment> pictureComments, String url,
+			byte[] content) {
+		super();
+		this.id = id;
+		this.name = name;
+		Description = description;
+		this.pictureSubCategory = pictureSubCategory;
+		Section = section;
+		this.pictureOwner = pictureOwner;
+		this.dateAdded = dateAdded;
+		PictureComments = pictureComments;
+		this.url = url;
+		this.content = content;
+	}
+
+
+	public byte[] getContent() {
+		return content;
+	}
+
+
+	public void setContent(byte[] content) {
+		this.content = content;
+	}
+
+
 	public Picture(int id, String name, String description,
 			SubCategory pictureSubCategory, String section, User pictureOwner,
 			Date dateAdded, List<Comment> pictureComments, String url) {

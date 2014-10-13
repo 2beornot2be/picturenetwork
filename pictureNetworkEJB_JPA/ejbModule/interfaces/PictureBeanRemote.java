@@ -16,6 +16,7 @@ public interface PictureBeanRemote {
 	
 	public Picture findPicture(int id);
 	public List<Picture> findAllPicture();
+	public List<Picture> findDesactivated();
     public List<Picture> findBySection(String section);
     public List<Picture> findByName(String name);
     public List<Picture> findBySubcategory(String pictureSubCategory);

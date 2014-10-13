@@ -216,7 +216,11 @@ public class User implements Serializable {
 		this.friendsProfiles = friendsProfiles;
 	}   
 	
-
+	@Override
+	public String toString()
+	{
+		return firstName + " " + lastName;
+	}
 	
    
 }

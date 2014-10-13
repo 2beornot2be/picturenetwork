@@ -19,6 +19,6 @@ public interface PictureBeanLocal {
     public List<Picture> findBySection(String section);
     public List<Picture> findByName(String name);
     public List<Picture> findBySubcategory(String pictureSubCategory);
-
+    public List<Picture> findDesactivated();
 
 }

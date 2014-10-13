@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
 import entities.Comment;
+import entities.ModelState_Activation;
 import entities.Picture;
 import entities.SubCategory;
 import interfaces.PictureBeanLocal;
@@ -129,6 +130,22 @@ public class PictureBean implements PictureBeanLocal,PictureBeanRemote{
 		return pictures;
 		
 		
+	}
+
+
+	@Override
+	public List<Picture> findDesactivated() {
+		// TODO Auto-generated method stub
+		begin();
+		List<Picture> pictures = null;
+		if(em != null)
+		{
+			String query = String.format("select  u from Picture u where u.activation = '%s'", ModelState_Activation.DESACTIVATED.toString() );
+			pictures =  (List<Picture>) em.createQuery(query).getResultList();
+			
+		}
+		
+		return pictures;
 	}
 	
 	
