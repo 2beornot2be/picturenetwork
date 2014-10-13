@@ -49,11 +49,17 @@ public class PictureBean implements PictureBeanLocal,PictureBeanRemote{
 
 	@Override
 	public boolean removePicture(int id) {
-begin();
-		
-		Picture mp= findPicture(id);
-		
-			em.remove(mp);
+		begin();
+			if(em != null)
+			{
+				Picture mp= findPicture(id);
+				if(mp != null)
+				{
+					em.remove(em.contains(mp) ? mp : em.merge(mp));
+				}
+				
+			}
+			
 		
 	
 	return false;
