@@ -29,7 +29,11 @@ public class SubCategory implements Serializable {
 	}   
 	
 	
-	
+	@Override
+	public String toString()
+	{
+		return name;
+	}
 	public SubCategory(String name, Category parentCategory,
 			List<Picture> pictures) {
 		super();

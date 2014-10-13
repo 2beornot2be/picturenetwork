@@ -22,6 +22,11 @@ public class Category implements Serializable {
 	private List<SubCategory> subCategories = null;
 	
 	
+	@Override
+	public String toString()
+	{
+		return name;
+	}
 	public Category() {
 		super();
 	}   
