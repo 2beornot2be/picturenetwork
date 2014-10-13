@@ -49,7 +49,7 @@ public class SubCategoryBean implements SubCategoryBeanLocal,SubCategoryBeanRemo
 	public boolean removeSubCategory(SubCategory subcategory) {
 		// TODO Auto-generated method stub
 		begin();
-		em.remove(subcategory);
+		em.remove( em.contains(subcategory) ? subcategory : em.merge(subcategory));
 		return false;
 	}
 
@@ -59,7 +59,7 @@ public class SubCategoryBean implements SubCategoryBeanLocal,SubCategoryBeanRemo
 		
 		SubCategory m = findSubCategoryA(id);
 		
-			em.remove(m);
+			em.remove(em.contains(m)? m : em.merge(m));
 		
 	
 	return false;
