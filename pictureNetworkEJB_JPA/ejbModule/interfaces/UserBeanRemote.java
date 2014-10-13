@@ -18,6 +18,7 @@ public interface UserBeanRemote
 	public boolean removeUser(int id);
 	public User findUser(int id);
 	public List<User> findAllUsers();
+	public List<User> findAllPhtograhers();
 	public List<Profile> findAllFollowingProfiles();
 	public List<Profile> findAllFriends();
 }
