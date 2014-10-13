@@ -2,13 +2,12 @@ package interfaces;
 
 import java.util.List;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 import entities.Comment;
 
-@Local
-public interface ProfileCommentLocal  {
-    
+@Remote
+public interface ProfileCommentBeanRemote {
 	public boolean addProfileComment(Comment comment);
 	
 	public boolean updateProfileComment(Comment comment);
@@ -17,6 +16,5 @@ public interface ProfileCommentLocal  {
 	public Comment findProfileComment(int id);
 	
 	public List<Comment> findAllProfileComment();
-
 
 }

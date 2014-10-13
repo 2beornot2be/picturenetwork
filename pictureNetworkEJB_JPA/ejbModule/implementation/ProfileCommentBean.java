@@ -8,11 +8,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
 import entities.Comment;
-import interfaces.ProfileCommentLocal;
-import interfaces.ProfileCommentRemote;
+import interfaces.ProfileCommentBeanLocal;
+import interfaces.ProfileCommentBeanRemote;
 
 @Stateless
-public class ProfileCommentBean implements ProfileCommentLocal,ProfileCommentRemote{
+public class ProfileCommentBean implements ProfileCommentBeanLocal,ProfileCommentBeanRemote{
 	
 	
 	@PersistenceUnit(name="pictureNetwork")
