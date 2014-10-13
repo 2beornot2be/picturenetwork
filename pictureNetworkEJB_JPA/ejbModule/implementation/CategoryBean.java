@@ -2,6 +2,7 @@ package implementation;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,11 +15,18 @@ import interfaces.CategoryBeanLocal;
 import interfaces.CategoryBeanRemote;
 
 @Stateless
-public class CategoryBean implements CategoryBeanLocal,CategoryBeanRemote{
+@LocalBean
+public class CategoryBean implements CategoryBeanLocal, CategoryBeanRemote {
 
 	@PersistenceUnit(name="pictureNetwork")
 	private EntityManagerFactory emf;
 	private EntityManager em;
+	
+	public CategoryBean()
+	{
+		
+	}
+	
 	 private void begin()
 	    {
 	    	if(emf != null)
@@ -30,15 +38,26 @@ public class CategoryBean implements CategoryBeanLocal,CategoryBeanRemote{
 	@Override
 	public boolean addCategory(Category category) {
 		begin();
-		em.persist(category);
+		if(em != null)
+		{
+			em.persist(category);
+			return true;
+		}
+		
 		return false;
 	}
 
 	@Override
 	public Category findCategory(int id) {
 	begin();
+	Category c = null;
+		if(em != null)
+		{
+			c = em.find(Category.class, id);
+			return c;
+		}
+		return c;
 		
-		return em.find(Category.class, id);
 	}
 
 	@Override
