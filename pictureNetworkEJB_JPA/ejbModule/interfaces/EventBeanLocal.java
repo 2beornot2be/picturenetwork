@@ -1,5 +1,5 @@
 package interfaces;
-
+//ok
 import javax.ejb.Local;
 
 import entities.Event;

@@ -1,5 +1,5 @@
 package implementation;
-
+// ok
 import interfaces.EventBeanLocal;
 import interfaces.EventBeanRemote;
 
