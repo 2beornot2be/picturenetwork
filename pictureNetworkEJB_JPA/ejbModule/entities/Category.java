@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Cascade;
+import javax.persistence.CascadeType;
 /**
  * Entity implementation class for Entity: Category
  *
@@ -18,10 +20,15 @@ public class Category implements Serializable {
 	private int id;
 	private String name;
 	private static final long serialVersionUID = 1L;
-	@OneToMany
+	@OneToMany(mappedBy="parentCategory")
 	private List<SubCategory> subCategories = null;
 	
 	
+	@Override
+	public String toString()
+	{
+		return name;
+	}
 	public Category() {
 		super();
 	}   

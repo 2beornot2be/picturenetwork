@@ -41,7 +41,7 @@ public class Profile implements Serializable {
         )
 	private List<User> followers = null;
 	// a ajouter List<ProfileComment>
-	@OneToMany
+	@OneToMany(mappedBy="userProfile")
 	private List<ProfileComment> profileComments;
 	
 	private static final long serialVersionUID = 1L;

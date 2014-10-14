@@ -26,15 +26,65 @@ public class User implements Serializable {
 	private String password = null;
 	private String state = null;
 	private String credit = null;
+	@OneToMany(mappedBy="Owner")
+	private List<Event> events;
 	@ManyToMany(mappedBy="followers")
 	private List<Profile> followedProfiles;
 	@ManyToMany(mappedBy="friends")
 	private List<Profile> friendsProfiles;
-	
+	@OneToMany(mappedBy="reciever")
+	List<ProfileComment> profileCommentsReceived;
 	private static final long serialVersionUID = 1L;
 	
 	
 	
+	public User(String firstName, String address, String tel, String password,
+			String state, String credit, List<Event> events,
+			List<Profile> followedProfiles, List<Profile> friendsProfiles,
+			String lastName) {
+		super();
+		this.firstName = firstName;
+		this.address = address;
+		this.tel = tel;
+		this.password = password;
+		this.state = state;
+		this.credit = credit;
+		this.events = events;
+		this.followedProfiles = followedProfiles;
+		this.friendsProfiles = friendsProfiles;
+		this.lastName = lastName;
+	}
+
+
+	public User(int id, String firstName, String address, String tel,
+			String password, String state, String credit, List<Event> events,
+			List<Profile> followedProfiles, List<Profile> friendsProfiles,
+			String lastName) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.address = address;
+		this.tel = tel;
+		this.password = password;
+		this.state = state;
+		this.credit = credit;
+		this.events = events;
+		this.followedProfiles = followedProfiles;
+		this.friendsProfiles = friendsProfiles;
+		this.lastName = lastName;
+	}
+
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+
+
 	public User(int id, String firstName, String address, String tel,
 			String password, String state, String credit,
 			List<Profile> followedProfiles, List<Profile> friendsProfiles,
@@ -166,7 +216,11 @@ public class User implements Serializable {
 		this.friendsProfiles = friendsProfiles;
 	}   
 	
-
+	@Override
+	public String toString()
+	{
+		return firstName + " " + lastName;
+	}
 	
    
 }

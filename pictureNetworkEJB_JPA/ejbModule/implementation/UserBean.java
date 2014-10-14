@@ -14,7 +14,9 @@ import javax.persistence.PersistenceUnit;
 
 import org.jboss.security.auth.spi.Users;
 
+import entities.Model;
 import entities.Profile;
+import entities.State;
 import entities.User;
 
 /**
@@ -116,7 +118,7 @@ public class UserBean implements UserBeanRemote, UserBeanLocal {
 		}
 		if(em != null)
 		{
-			em.remove(User);
+			em.remove(em.contains(User) ? User : em.merge(User));
 			return true;
 		}
 		
@@ -194,6 +196,19 @@ public class UserBean implements UserBeanRemote, UserBeanLocal {
 	public List<Profile> findAllFriends() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<User> findAllPhtograhers() {
+		// TODO Auto-generated method stub
+		begin();
+		List<User> models = null;
+		if(em != null)
+		{
+			String query = String.format("select  u from User u where u.state = '%s'", State.USER.toString());
+			models = (List<User>)em.createQuery(query).getResultList();
+		}
+		return models;
 	}
 
 }

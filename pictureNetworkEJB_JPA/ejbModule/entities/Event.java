@@ -41,8 +41,8 @@ public class Event implements Serializable {
             @JoinColumn(name="PARTICIPANT_ID", referencedColumnName="id")
         )
 	private List<User> participants;
-	@OneToMany
-	private List<Comment> eventComment = null;
+	@OneToMany(mappedBy="event")
+	private List<EventComment> eventComment = null;
 	// a faire list<Comment>
 	
 	
@@ -55,7 +55,7 @@ public class Event implements Serializable {
 	
 	
 	public Event(String topic, String description, Date eventDate, User owner,
-			List<User> participants, List<Comment> eventComments) {
+			List<User> participants, List<EventComment> eventComments) {
 		super();
 		this.topic = topic;
 		this.description = description;
@@ -70,7 +70,7 @@ public class Event implements Serializable {
 
 
 	public Event(int id, String topic, String description, Date eventDate,
-			User owner, List<User> participants, List<Comment> eventComments) {
+			User owner, List<User> participants, List<EventComment> eventComments) {
 		super();
 		this.id = id;
 		this.topic = topic;
@@ -177,7 +177,7 @@ public class Event implements Serializable {
 
 
 
-	public List<Comment> getEventComment() {
+	public List<EventComment> getEventComment() {
 		return eventComment;
 	}
 
@@ -185,7 +185,7 @@ public class Event implements Serializable {
 
 
 
-	public void setEventComment(List<Comment> eventComment) {
+	public void setEventComment(List<EventComment> eventComment) {
 		this.eventComment = eventComment;
 	}
 
