@@ -1,9 +1,9 @@
 package implementation;
 
-import java.util.List;
-
 import interfaces.ModelBeanLocal;
 import interfaces.ModelBeanRemote;
+
+import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -22,41 +22,37 @@ import entities.State;
 @LocalBean
 public class ModelBean implements ModelBeanRemote, ModelBeanLocal {
 
-    /**
-     * Default constructor. 
-     */
-	@PersistenceUnit(name="pictureNetwork")
+	/**
+	 * Default constructor.
+	 */
+	@PersistenceUnit(name = "pictureNetwork")
 	private EntityManagerFactory emf;
 	private EntityManager em;
-	private void begin()
-    {
-    	if(emf != null)
-		{
+
+	private void begin() {
+		if (emf != null) {
 			em = emf.createEntityManager();
 		}
-    }
-    public ModelBean() {
-        // TODO Auto-generated constructor stub
-    }
+	}
+
+	public ModelBean() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public boolean addModel(Model Model) {
 		// TODO Auto-generated method stub
 		begin();
-		if(em == null)
-		{
+		if (em == null) {
 			System.err.println("\n\n\nEM == NULL\n\n\n");
 		}
-		if(em != null)
-		{
-			
-			em.persist(Model);			
-			
-			
+		if (em != null) {
+
+			em.persist(Model);
+
 			return true;
 		}
-		
-		
+
 		return false;
 	}
 
@@ -65,16 +61,16 @@ public class ModelBean implements ModelBeanRemote, ModelBeanLocal {
 		// TODO Auto-generated method stub
 		Model model = null;
 		begin();
-		if(em != null)
-		{
-			String query = String.format("select  u from User u where u.firstName = '%s' and  u.lastName = '%s' and u.password = '%s'", first, last, Password);
+		if (em != null) {
+			String query = String
+					.format("select  u from User u where u.firstName = '%s' and  u.lastName = '%s' and u.password = '%s'",
+							first, last, Password);
 			List<Model> models = em.createQuery(query).getResultList();
-			if(models.size() >= 1)
-			{
+			if (models.size() >= 1) {
 				model = models.get(0);
 			}
 		}
-		
+
 		return model;
 	}
 
@@ -82,8 +78,7 @@ public class ModelBean implements ModelBeanRemote, ModelBeanLocal {
 	public boolean updateModel(Model Model) {
 		// TODO Auto-generated method stub
 		begin();
-		if(em != null)
-		{
+		if (em != null) {
 			em.merge(Model);
 			return true;
 		}
@@ -94,8 +89,7 @@ public class ModelBean implements ModelBeanRemote, ModelBeanLocal {
 	public boolean removeModel(Model Model) {
 		// TODO Auto-generated method stub
 		begin();
-		if(em != null)
-		{
+		if (em != null) {
 			em.remove(em.contains(Model) ? Model : em.merge(Model));
 			return true;
 		}
@@ -106,16 +100,14 @@ public class ModelBean implements ModelBeanRemote, ModelBeanLocal {
 	public boolean removeModel(int id) {
 		// TODO Auto-generated method stub
 		begin();
-		if(em != null)
-		{
+		if (em != null) {
 			Model m = findModel(id);
-			if(m != null)
-			{
+			if (m != null) {
 				em.remove(em.contains(m) ? m : em.merge(m));
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -124,8 +116,7 @@ public class ModelBean implements ModelBeanRemote, ModelBeanLocal {
 		// TODO Auto-generated method stub
 		begin();
 		Model model = null;
-		if(em != null)
-		{
+		if (em != null) {
 			return em.find(Model.class, id);
 		}
 		return model;
@@ -134,24 +125,21 @@ public class ModelBean implements ModelBeanRemote, ModelBeanLocal {
 	@Override
 	public boolean desactivateReactivateModel(Model model, boolean desactivate) {
 		// TODO Auto-generated method stub
-		if(model != null)
-		{
-			if(desactivate)
-			{
-				model.setModelState_Activation(ModelState_Activation.DESACTIVATED.toString());
-			}
-			else
-			{
-				model.setModelState_Activation(ModelState_Activation.ACTIVATED.toString());
+		if (model != null) {
+			if (desactivate) {
+				model.setModelState_Activation(ModelState_Activation.DESACTIVATED
+						.toString());
+			} else {
+				model.setModelState_Activation(ModelState_Activation.ACTIVATED
+						.toString());
 			}
 			begin();
-			if(em != null)
-			{
+			if (em != null) {
 				em.merge(model);
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -160,10 +148,11 @@ public class ModelBean implements ModelBeanRemote, ModelBeanLocal {
 		// TODO Auto-generated method stub
 		begin();
 		List<Model> models = null;
-		if(em != null)
-		{
-			String query = String.format("select  u from User u where u.state = '%s'", State.MODEL.toString());
-			models = (List<Model>)em.createQuery(query).getResultList();
+		if (em != null) {
+			String query = String.format(
+					"select  u from User u where u.state = '%s'",
+					State.MODEL.toString());
+			models = (List<Model>) em.createQuery(query).getResultList();
 		}
 		return models;
 	}
@@ -173,10 +162,12 @@ public class ModelBean implements ModelBeanRemote, ModelBeanLocal {
 		// TODO Auto-generated method stub
 		begin();
 		List<Model> models = null;
-		if(em != null)
-		{
-			String query = String.format("select  u from User u where u.state = '%s' and u.modelState_Activation = '%s'", State.MODEL.toString(), ModelState_Activation.DESACTIVATED.toString());
-			models = (List<Model>)em.createQuery(query).getResultList();
+		if (em != null) {
+			String query = String
+					.format("select  u from User u where u.state = '%s' and u.modelState_Activation = '%s'",
+							State.MODEL.toString(),
+							ModelState_Activation.DESACTIVATED.toString());
+			models = (List<Model>) em.createQuery(query).getResultList();
 		}
 		return models;
 	}
