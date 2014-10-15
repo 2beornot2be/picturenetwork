@@ -14,7 +14,7 @@ import javax.persistence.TypedQuery;
 import entities.Comment;
 import interfaces.CommentBeanLocal;
 import interfaces.CommentBeanRemote;
-
+// update akram
 
 @Stateless
 public class CommentBean implements CommentBeanLocal,CommentBeanRemote {
