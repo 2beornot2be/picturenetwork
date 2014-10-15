@@ -1,11 +1,20 @@
 package entities;
-
+//ok
 import java.io.Serializable;
-import java.lang.String;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Entity implementation class for Entity: Event
@@ -13,7 +22,7 @@ import javax.persistence.*;
  */
 @Entity
 public class Event implements Serializable {
-
+	private String modelState_Activation = ModelState_Activation.ACTIVATED.toString();
 	@Id  
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -178,6 +187,22 @@ public class Event implements Serializable {
 
 	public void setEventComment(List<EventComment> eventComment) {
 		this.eventComment = eventComment;
+	}
+
+
+
+
+
+	public String getModelState_Activation() {
+		return modelState_Activation;
+	}
+
+
+
+
+
+	public void setModelState_Activation(String modelState_Activation) {
+		this.modelState_Activation = modelState_Activation;
 	}
    
 }
