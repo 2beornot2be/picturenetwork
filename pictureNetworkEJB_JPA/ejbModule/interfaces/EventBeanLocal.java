@@ -1,5 +1,7 @@
 package interfaces;
 //ok
+import java.util.List;
+
 import javax.ejb.Local;
 
 import entities.Event;
@@ -8,11 +10,15 @@ import entities.Event;
 public interface EventBeanLocal {
 
 
-	public Event findbyid(int id);
+	public Event findEvent(int id);
 
-	public void del(int id);
-	public void del(Event e);
+	public void removeEvent(int id);
 
-	
+	public void removeEvent(Event e);
+
 	public boolean ApproveEvent(Event event, boolean Approve);
+	
+	public boolean addEvent(Event e);
+	public boolean updateEvent(Event event);
+	public List<Event> findAllEvents();
 }
