@@ -54,7 +54,7 @@ public class CommentBean implements CommentBeanLocal,CommentBeanRemote {
 	public boolean removeComment(Comment comment) {
 		// TODO Auto-generated method stub
 		begin();
-			em.remove(comment);
+			em.remove(em.contains(comment) ?comment : em.merge(comment));
 			
 		return false;
 	}
@@ -65,7 +65,7 @@ public class CommentBean implements CommentBeanLocal,CommentBeanRemote {
 		
 			Comment m = findComment(id);
 			
-				em.remove(m);
+			em.remove(em.contains(m) ?m : em.merge(m));
 			
 		
 		return false;
