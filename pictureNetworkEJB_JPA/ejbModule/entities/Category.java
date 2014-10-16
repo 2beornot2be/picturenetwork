@@ -20,7 +20,7 @@ public class Category implements Serializable {
 	private int id;
 	private String name;
 	private static final long serialVersionUID = 1L;
-	@OneToMany(mappedBy="parentCategory")
+	@OneToMany(mappedBy="parentCategory",cascade=CascadeType.REMOVE)
 	private List<SubCategory> subCategories = null;
 	
 	
