@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 public class Event implements Serializable {
-	private String modelState_Activation = ModelState_Activation.ACTIVATED.toString();
+	
 	@Id  
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -44,8 +44,62 @@ public class Event implements Serializable {
 	@OneToMany(mappedBy="event")
 	private List<EventComment> eventComment = null;
 	// a faire list<Comment>
+	private String modelState_Activation = ModelState_Activation.ACTIVATED.toString();
 	
-	
+	/**
+	 * @param topic
+	 * @param description
+	 * @param eventDate
+	 * @param owner
+	 * @param participants
+	 * @param eventComment
+	 * @param modelState_Activation
+	 */
+	public Event(String topic, String description, Date eventDate, User owner,
+			List<User> participants, List<EventComment> eventComment,
+			String modelState_Activation) {
+		super();
+		this.topic = topic;
+		this.description = description;
+		this.eventDate = eventDate;
+		Owner = owner;
+		this.participants = participants;
+		this.eventComment = eventComment;
+		this.modelState_Activation = modelState_Activation;
+	}
+
+
+
+
+
+	/**
+	 * @param id
+	 * @param topic
+	 * @param description
+	 * @param eventDate
+	 * @param owner
+	 * @param participants
+	 * @param eventComment
+	 * @param modelState_Activation
+	 */
+	public Event(int id, String topic, String description, Date eventDate,
+			User owner, List<User> participants,
+			List<EventComment> eventComment, String modelState_Activation) {
+		super();
+		this.id = id;
+		this.topic = topic;
+		this.description = description;
+		this.eventDate = eventDate;
+		Owner = owner;
+		this.participants = participants;
+		this.eventComment = eventComment;
+		this.modelState_Activation = modelState_Activation;
+	}
+
+
+
+
+
 	public Event() {
 		super();
 	}

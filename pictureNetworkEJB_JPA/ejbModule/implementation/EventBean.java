@@ -108,8 +108,9 @@ public class EventBean implements EventBeanRemote, EventBeanLocal {
 	@Override
 	public List<Event> findAllEvents() {
 		// TODO Auto-generated method stub
+		begin();
 		
-		return   ((List<Event>) em.createQuery("select  u from Event u ").getResultList());
+		return   ((List<Event>) em.createQuery("select  u from Event u").getResultList());
 		
 	}
 
