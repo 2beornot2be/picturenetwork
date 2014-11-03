@@ -1,5 +1,6 @@
 package implementation;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -36,6 +37,7 @@ public class PictureBean implements PictureBeanLocal,PictureBeanRemote{
 	public boolean addPicture(Picture picture) {
 		// TODO Auto-generated method stub
 		begin();
+		picture.setDateAdded(new Date());
 		em.persist(picture);
 		return true;
 	}
@@ -44,6 +46,7 @@ public class PictureBean implements PictureBeanLocal,PictureBeanRemote{
 	public boolean updatePicture(Picture picture) {
 		// TODO Auto-generated method stub
 		begin();
+		picture.setDateAdded(new Date());
 		em.merge(picture);
 		return false;
 	}

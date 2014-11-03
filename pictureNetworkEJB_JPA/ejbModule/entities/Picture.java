@@ -36,7 +36,7 @@ public class Picture implements Serializable {
 	
 	private User pictureOwner;
 	@Temporal(TemporalType.DATE)
-	private Date dateAdded;
+	private Date dateAdded = new Date();
 	private static final long serialVersionUID = 1L;
 	@OneToMany(mappedBy="picture", cascade=CascadeType.ALL)
 	@JsonIgnore
@@ -198,7 +198,7 @@ public class Picture implements Serializable {
 		this.pictureSubCategory = pictureSubCategory;
 		Section = section;
 		this.pictureOwner = pictureOwner;
-		this.dateAdded = dateAdded;
+		this.dateAdded =  new Date();
 		PictureComments = pictureComments;
 		this.url = url;
 	}
@@ -341,7 +341,7 @@ public class Picture implements Serializable {
 	}
 
 	public void setDateAdded(Date dateAdded) {
-		this.dateAdded = dateAdded;
+		this.dateAdded = new Date();
 	}
 
 	@JsonIgnore

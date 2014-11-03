@@ -32,11 +32,11 @@ public class Comment implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dateModified;
 	private static final long serialVersionUID = 1L;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private User sender;
 	private String credit;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private Picture picture;
 	
 	
@@ -55,8 +55,8 @@ public class Comment implements Serializable {
 			User sender, String credit, Picture picture) {
 		super();
 		this.content = content;
-		this.dateCreated = dateCreated;
-		this.dateModified = dateModified;
+		this.dateCreated = new Date();
+		this.dateModified = new Date();
 		this.sender = sender;
 		this.credit = credit;
 		this.picture = picture;
@@ -90,8 +90,8 @@ public class Comment implements Serializable {
 			User sender, String string) {
 		super();
 		this.content = content;
-		this.dateCreated = dateCreated;
-		this.dateModified = dateModified;
+		this.dateCreated = new Date();
+		this.dateModified = new Date();
 		this.sender = sender;
 		this.credit = string;
 	}
@@ -104,8 +104,8 @@ public class Comment implements Serializable {
 		super();
 		this.id = id;
 		this.content = content;
-		this.dateCreated = dateCreated;
-		this.dateModified = dateModified;
+		this.dateCreated = new Date();
+		this.dateModified = new Date();
 		this.sender = sender;
 		this.credit = credit;
 	}

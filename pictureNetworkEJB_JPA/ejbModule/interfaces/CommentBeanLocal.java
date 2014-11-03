@@ -28,7 +28,7 @@ public interface CommentBeanLocal {
 	@Consumes("application/json")
 	public void updateComment(Comment comment);
 	
-	@GET
+	@POST
 	@Path("/remove")
 	@Consumes("application/json")
 	public void removeComment(Comment comment);

@@ -66,16 +66,18 @@ public class CommentBean implements CommentBeanLocal,CommentBeanRemote {
 			}
 	    }
 	
-	
+	//testee
 	@Override
 	public void addComment(Comment comment) {
 		
 		begin();
+		comment.setDateCreated(new Date());
+		comment.setDateModified(new Date());
 		em.merge(comment);
 		
 	}
 	
-	
+	//testee
 	@Override
 	public void updateComment(Comment comment) {
 	begin();
@@ -85,17 +87,17 @@ public class CommentBean implements CommentBeanLocal,CommentBeanRemote {
 	}
 
 
-	
+	//testee
 	@Override
 	public void removeComment(Comment comment) {
 		// TODO Auto-generated method stub
 		begin();
-			em.remove(em.contains(comment) ?comment : em.merge(comment));
+			removeComment(comment.getId());
 			
 			
 	}
 	
-	
+	//testee
 	@Override
 	public void removeComment( int id) {
 		begin();
@@ -108,7 +110,7 @@ public class CommentBean implements CommentBeanLocal,CommentBeanRemote {
 			
 	}
 	
-	
+	//testee
 	@Override
 	public Comment findComment( int id) {
 	
@@ -119,7 +121,7 @@ public class CommentBean implements CommentBeanLocal,CommentBeanRemote {
 		
 	}
 	
-	
+	//testee
 	@Override
 	@javax.ejb.TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Comment> findAllComment( int pictureId) {
