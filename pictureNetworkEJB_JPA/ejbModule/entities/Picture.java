@@ -9,13 +9,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: Picture
  *
  */
 @Entity
-
+@XmlRootElement
 public class Picture implements Serializable {
 
 	@Id
@@ -31,7 +32,7 @@ public class Picture implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dateAdded;
 	private static final long serialVersionUID = 1L;
-	@OneToMany
+	@OneToMany(mappedBy="picture")
 	private List<Comment> PictureComments = null;
 	private String url;
 	@Lob

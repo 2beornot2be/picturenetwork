@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import entities.Comment;
+import entities.Picture;
 
 
 @Local
@@ -17,6 +18,10 @@ public interface CommentBeanLocal {
 	public boolean removeComment(int id);
 	public Comment findComment(int id);
 	
-	public List<Comment> findAllComment();
+	//public List<Comment> findAllComment();
+
+	//List<Comment> findAllComment(Picture p);
+
+	List<Comment> findAllComment(int pictureId);
 
 }

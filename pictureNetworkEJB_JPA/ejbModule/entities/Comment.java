@@ -6,13 +6,14 @@ import java.util.Date;
 
 import javax.ejb.Timeout;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: Comment
  *
  */
 @Entity
-
+@XmlRootElement
 public class Comment implements Serializable {
 
 	@Id
@@ -28,9 +29,46 @@ public class Comment implements Serializable {
 	@ManyToOne
 	private User sender;
 	private String credit;
+	@ManyToOne
+	private Picture picture;
 	
 	
-	
+
+
+
+	/**
+	 * @param content
+	 * @param dateCreated
+	 * @param dateModified
+	 * @param sender
+	 * @param credit
+	 * @param picture
+	 */
+	public Comment(String content, Date dateCreated, Date dateModified,
+			User sender, String credit, Picture picture) {
+		super();
+		this.content = content;
+		this.dateCreated = dateCreated;
+		this.dateModified = dateModified;
+		this.sender = sender;
+		this.credit = credit;
+		this.picture = picture;
+	}
+
+
+
+
+	public Picture getPicture() {
+		return picture;
+	}
+
+
+
+
+	public void setPicture(Picture picture) {
+		this.picture = picture;
+	}
+
 
 
 
