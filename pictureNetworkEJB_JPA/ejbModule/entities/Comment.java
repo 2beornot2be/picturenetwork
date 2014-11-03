@@ -26,10 +26,10 @@ public class Comment implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dateModified;
 	private static final long serialVersionUID = 1L;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private User sender;
 	private String credit;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Picture picture;
 	
 	

@@ -57,36 +57,36 @@ public class CommentBean implements CommentBeanLocal,CommentBeanRemote {
 	
 	
 	@Override
-	public boolean addComment(Comment comment) {
+	public void addComment(Comment comment) {
 		
 		begin();
 		em.merge(comment);
-		return false;
+		
 	}
 	
 	
 	@Override
-	public boolean updateComment(Comment comment) {
+	public void updateComment(Comment comment) {
 	begin();
 		comment.setDateModified(new Date());
 		em.merge(comment);
-		return false;
+		
 	}
 
 
 	
 	@Override
-	public boolean removeComment(Comment comment) {
+	public void removeComment(Comment comment) {
 		// TODO Auto-generated method stub
 		begin();
 			em.remove(em.contains(comment) ?comment : em.merge(comment));
 			
-		return true;
+			
 	}
 	
 	
 	@Override
-	public boolean removeComment( int id) {
+	public void removeComment( int id) {
 		begin();
 		
 			Comment m = findComment(id);
@@ -94,7 +94,7 @@ public class CommentBean implements CommentBeanLocal,CommentBeanRemote {
 			em.remove(em.contains(m) ?m : em.merge(m));
 			
 		
-		return false;
+			
 	}
 	
 	

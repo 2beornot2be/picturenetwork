@@ -27,12 +27,12 @@ public class Picture implements Serializable {
 	@ManyToOne
 	private SubCategory pictureSubCategory;
 	private String Section;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private User pictureOwner;
 	@Temporal(TemporalType.DATE)
 	private Date dateAdded;
 	private static final long serialVersionUID = 1L;
-	@OneToMany(mappedBy="picture")
+	@OneToMany(mappedBy="picture", cascade=CascadeType.ALL)
 	private List<Comment> PictureComments = null;
 	private String url;
 	@Lob
@@ -63,7 +63,7 @@ public class Picture implements Serializable {
 		this.pictureSubCategory = pictureSubCategory;
 		Section = section;
 		this.pictureOwner = pictureOwner;
-		this.dateAdded = dateAdded;
+		this.dateAdded = new Date();
 		PictureComments = pictureComments;
 		this.url = url;
 		this.content = content;
@@ -95,7 +95,7 @@ public class Picture implements Serializable {
 		this.pictureSubCategory = pictureSubCategory;
 		Section = section;
 		this.pictureOwner = pictureOwner;
-		this.dateAdded = dateAdded;
+		this.dateAdded = new Date();
 		PictureComments = pictureComments;
 		this.url = url;
 		this.content = content;
@@ -134,7 +134,7 @@ public class Picture implements Serializable {
 		this.pictureSubCategory = pictureSubCategory;
 		Section = section;
 		this.pictureOwner = pictureOwner;
-		this.dateAdded = dateAdded;
+		this.dateAdded =  new Date();
 		PictureComments = pictureComments;
 		this.url = url;
 		this.content = content;
@@ -164,7 +164,7 @@ public class Picture implements Serializable {
 		this.pictureSubCategory = pictureSubCategory;
 		Section = section;
 		this.pictureOwner = pictureOwner;
-		this.dateAdded = dateAdded;
+		this.dateAdded =  new Date();
 		PictureComments = pictureComments;
 		this.url = url;
 		this.content = content;
@@ -206,7 +206,7 @@ public class Picture implements Serializable {
 		this.pictureSubCategory = pictureSubCategory;
 		Section = section;
 		this.pictureOwner = pictureOwner;
-		this.dateAdded = dateAdded;
+		this.dateAdded =  new Date();
 		PictureComments = pictureComments;
 		this.url = url; // par exemple /images/plage.jpg => url ( c'est pour acceder a l'image stocke
 		// car la base de donnee n'enregistre que le chemin d'acces au fichier (url) et non pas

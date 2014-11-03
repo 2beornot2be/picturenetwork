@@ -21,34 +21,34 @@ import entities.Picture;
 public interface CommentBeanRemote {
 	
 	@POST
-	@Path("add/")
+	@Path("/add")
 	@Consumes("application/json")
-    public boolean addComment(Comment comment);
+    public void addComment(Comment comment);
 	
 	@POST
-	@Path("update/")
+	@Path("/update")
 	@Consumes("application/json")
-	public boolean updateComment(Comment comment);
+	public void updateComment(Comment comment);
 	
-	@DELETE
-	@Path("remove/")
+	@GET
+	@Path("/remove")
 	@Consumes("application/json")
-	public boolean removeComment(Comment comment);
+	public void removeComment(Comment comment);
 	
-	@Path("remove/{id}")
+	@Path("/remove/{id}")
 	@GET
 	@Produces("application/json")
-	public boolean removeComment(@PathParam("id") int id);
+	public void removeComment(@PathParam("id") int id);
 
 	@GET
 	@Produces("application/json")
-	@Path("findCommentOfPicture/{commentId}")
+	@Path("/findCommentOfPicture/{commentId}")
 	public Comment findComment(@PathParam("commentId") int id);
 	
 //	public List<Comment> findAllComment();
 	//List<Comment> findAllComment(Picture p);
 	@GET
 	@Produces("application/json")
-	@Path("findCommentsOfPicture/{pictureId}")
+	@Path("/findCommentsOfPicture/{pictureId}")
 	List<Comment> findAllComment(@PathParam("pictureId") int pictureId);
 }
