@@ -13,7 +13,14 @@ import java.util.List;
 
 
 
+
+
+
+
+
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NamedQuery;
@@ -29,12 +36,16 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.FetchProfile.FetchOverride;
+import org.hibernate.annotations.NamedQueries;
+
 import entities.Comment;
 import entities.Picture;
 import interfaces.CommentBeanLocal;
 import interfaces.CommentBeanRemote;
 // update akram
-@NamedQuery(name="commentsOfPicture", query="select u from Comment u where u.picture.id := pictureId")
+
+
 
 
 
@@ -110,11 +121,12 @@ public class CommentBean implements CommentBeanLocal,CommentBeanRemote {
 	
 	
 	@Override
+	@javax.ejb.TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Comment> findAllComment( int pictureId) {
 		
 	
 		begin();
-		return em.createNamedQuery("commentsOfPicture").setParameter("pictureId", pictureId).getResultList();
+		return em.createNamedQuery("commentsOfPicture", Comment.class).setParameter("pictureId", pictureId).getResultList();
 		
 	}
 

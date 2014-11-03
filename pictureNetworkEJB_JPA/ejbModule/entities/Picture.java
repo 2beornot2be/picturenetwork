@@ -9,7 +9,11 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  * Entity implementation class for Entity: Picture
@@ -17,6 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
+@XmlAccessorType(value= XmlAccessType.NONE)
 public class Picture implements Serializable {
 
 	@Id
@@ -28,11 +33,13 @@ public class Picture implements Serializable {
 	private SubCategory pictureSubCategory;
 	private String Section;
 	@ManyToOne(cascade=CascadeType.MERGE)
+	
 	private User pictureOwner;
 	@Temporal(TemporalType.DATE)
 	private Date dateAdded;
 	private static final long serialVersionUID = 1L;
 	@OneToMany(mappedBy="picture", cascade=CascadeType.ALL)
+	@JsonIgnore
 	private List<Comment> PictureComments = null;
 	private String url;
 	@Lob
@@ -337,7 +344,7 @@ public class Picture implements Serializable {
 		this.dateAdded = dateAdded;
 	}
 
-
+	@JsonIgnore
 	public List<Comment> getPictureComments() {
 		return PictureComments;
 	}

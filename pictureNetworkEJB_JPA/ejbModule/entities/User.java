@@ -5,7 +5,14 @@ import java.lang.String;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  * Entity implementation class for Entity: User
@@ -13,28 +20,39 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
+@XmlAccessorType(value= XmlAccessType.NONE)
 public class User implements Serializable {
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@XmlElement
 	private int id;
-	
+	@XmlElement
 	private String firstName = null;
+	@XmlElement
 	private String address = null;
+	@XmlElement
 	private String tel = null;
 	
-	
+	@XmlElement
 	private String password = null;
+	@XmlElement
 	private String state = null;
+	@XmlElement
 	private String credit = null;
-	@OneToMany(mappedBy="Owner")
-	private List<Event> events;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="Owner",fetch=FetchType.EAGER)
+	private List<Event> events = null;
+	@JsonIgnore
 	@ManyToMany(mappedBy="followers")
-	private List<Profile> followedProfiles;
+	private List<Profile> followedProfiles = null;
+	@JsonIgnore
 	@ManyToMany(mappedBy="friends")
-	private List<Profile> friendsProfiles;
+	private List<Profile> friendsProfiles = null;
+	@JsonIgnore
 	@OneToMany(mappedBy="reciever")
-	List<ProfileComment> profileCommentsReceived;
+	List<ProfileComment> profileCommentsReceived = null;
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -75,7 +93,7 @@ public class User implements Serializable {
 		this.lastName = lastName;
 	}
 
-
+	
 	public List<Event> getEvents() {
 		return events;
 	}
@@ -104,6 +122,7 @@ public class User implements Serializable {
 	}
 
 	private String lastName = null;
+	@XmlElement
 	public String getLastName() {
 		return lastName;
 	}
@@ -112,7 +131,7 @@ public class User implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
+	@XmlElement
 	public String getFirstName() {
 		return firstName;
 	}
@@ -120,7 +139,7 @@ public class User implements Serializable {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
+	@XmlElement
 	public String getAddress() {
 		return address;
 	}
@@ -128,7 +147,7 @@ public class User implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
+	@XmlElement
 	public String getTel() {
 		return tel;
 	}
@@ -136,7 +155,7 @@ public class User implements Serializable {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-
+	@XmlElement
 	public String getPassword() {
 		return password;
 	}
@@ -144,7 +163,7 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	@XmlElement
 	public String getState() {
 		return state;
 	}
@@ -152,7 +171,7 @@ public class User implements Serializable {
 	public void setState(String state) {
 		this.state = state;
 	}
-
+	@XmlElement
 	public String getCredit() {
 		return credit;
 	}
@@ -192,7 +211,7 @@ public class User implements Serializable {
 		this.state = state;
 		this.credit = credit;
 	}
-
+	@XmlElement
 	public int getId() {
 		return this.id;
 	}
@@ -217,6 +236,17 @@ public class User implements Serializable {
 		this.friendsProfiles = friendsProfiles;
 	}   
 	
+	public List<ProfileComment> getProfileCommentsReceived() {
+		return profileCommentsReceived;
+	}
+
+
+	public void setProfileCommentsReceived(
+			List<ProfileComment> profileCommentsReceived) {
+		this.profileCommentsReceived = profileCommentsReceived;
+	}
+
+
 	@Override
 	public String toString()
 	{

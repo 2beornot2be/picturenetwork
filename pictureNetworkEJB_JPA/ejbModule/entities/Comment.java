@@ -6,7 +6,11 @@ import java.util.Date;
 
 import javax.ejb.Timeout;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  * Entity implementation class for Entity: Comment
@@ -14,6 +18,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
+@NamedQuery(name="commentsOfPicture", query="select u from Comment u where u.picture.id = :pictureId")
+@XmlAccessorType(value= XmlAccessType.NONE)
 public class Comment implements Serializable {
 
 	@Id
@@ -29,6 +35,7 @@ public class Comment implements Serializable {
 	@ManyToOne(cascade=CascadeType.ALL)
 	private User sender;
 	private String credit;
+	
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Picture picture;
 	
@@ -57,7 +64,7 @@ public class Comment implements Serializable {
 
 
 
-
+	//@JsonIgnore
 	public Picture getPicture() {
 		return picture;
 	}
@@ -178,7 +185,7 @@ public class Comment implements Serializable {
 		this.dateModified = dateModified;
 	}
 
-
+	//@JsonIgnore
 	public User getSender() {
 		return sender;
 	}
