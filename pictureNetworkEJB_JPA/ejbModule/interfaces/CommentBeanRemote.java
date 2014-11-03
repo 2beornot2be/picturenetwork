@@ -16,24 +16,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 import entities.Comment;
 import entities.Picture;
 @Path("/pictureComments")
-@XmlRootElement
+
 @Remote
 public interface CommentBeanRemote {
 	
-	@PUT
+	@POST
+	@Path("add/")
 	@Consumes("application/json")
     public boolean addComment(Comment comment);
 	
 	@POST
+	@Path("update/")
 	@Consumes("application/json")
 	public boolean updateComment(Comment comment);
 	
 	@DELETE
+	@Path("remove/")
 	@Consumes("application/json")
 	public boolean removeComment(Comment comment);
 	
-	@Path("{id}")
-	@DELETE
+	@Path("remove/{id}")
+	@GET
 	@Produces("application/json")
 	public boolean removeComment(@PathParam("id") int id);
 
