@@ -1,19 +1,18 @@
 package implementation;
-// ok
-import java.util.List;
 
+// ok
 import interfaces.EventBeanLocal;
 import interfaces.EventBeanRemote;
+
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
-import entities.Admin;
 import entities.Event;
 import entities.ModelState_Activation;
-import entities.State;
 
 /**
  * Session Bean implementation class EventBean
@@ -33,10 +32,6 @@ public class EventBean implements EventBeanRemote, EventBeanLocal {
 	public EventBean() {
 		// TODO Auto-generated constructor stub
 	}
-
-	
-
-	
 
 	@Override
 	public boolean ApproveEvent(Event event, boolean Approve) {
@@ -59,8 +54,6 @@ public class EventBean implements EventBeanRemote, EventBeanLocal {
 		return false;
 	}
 
-	
-
 	@Override
 	public Event findEvent(int id) {
 		// TODO Auto-generated method stub
@@ -73,8 +66,7 @@ public class EventBean implements EventBeanRemote, EventBeanLocal {
 		// TODO Auto-generated method stub
 		begin();
 		Event e = findEvent(id);
-		if(e != null)
-		{
+		if (e != null) {
 			em.remove(em.contains(e) ? e : em.merge(e));
 		}
 	}
@@ -85,33 +77,48 @@ public class EventBean implements EventBeanRemote, EventBeanLocal {
 		em.remove(em.contains(e) ? e : em.merge(e));
 	}
 
-	@Override
-	public boolean addEvent(Event e) {
-		// TODO Auto-generated method stub
-		begin();
-		em.persist(e);
-		return true;
-	}
+	
 
-	@Override
-	public boolean updateEvent(Event event) {
-		// TODO Auto-generated method stub
-		begin();
-		if(em != null)
-		{
-			em.merge(event);
-			return true;
-		}
-		return false;
-	}
+	
 
 	@Override
 	public List<Event> findAllEvents() {
 		// TODO Auto-generated method stub
 		begin();
-		
-		return   ((List<Event>) em.createQuery("select  u from Event u").getResultList());
-		
+
+		return ((List<Event>) em.createQuery("select  u from Event u")
+				.getResultList());
+
 	}
+
+	@Override
+	public List<Event> findByUser(int owner) {
+		begin();
+		List<Event> events = null;
+		if (em != null) {
+			String query = String.format(
+					"select e from Event e where e.owner.id=%d", owner);
+			events = em.createQuery(query).getResultList();
+
+		}
+		return events;
+
+	}
+
+	@Override
+	public void CreateEvent(Event e) {
+		begin();
+		em.merge(e);
+
+	}
+
+	@Override
+	public void UpdateEvente(Event e) {
+		begin();
+		em.merge(e);
+
+	}
+
+	
 
 }

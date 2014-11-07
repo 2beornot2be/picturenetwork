@@ -13,6 +13,7 @@ import entities.Comment;
 import entities.ModelState_Activation;
 import entities.Picture;
 import entities.SubCategory;
+import entities.User;
 import interfaces.PictureBeanLocal;
 import interfaces.PictureBeanRemote;
 
@@ -34,25 +35,25 @@ public class PictureBean implements PictureBeanLocal,PictureBeanRemote{
 	
 	
 	@Override
-	public boolean addPicture(Picture picture) {
-		// TODO Auto-generated method stub
-		begin();
-		picture.setDateAdded(new Date());
-		em.persist(picture);
-		return true;
-	}
-
-	@Override
-	public boolean updatePicture(Picture picture) {
+	public void addPicture(Picture picture) {
 		// TODO Auto-generated method stub
 		begin();
 		picture.setDateAdded(new Date());
 		em.merge(picture);
-		return false;
+		
 	}
 
 	@Override
-	public boolean removePicture(int id) {
+	public void updatePicture(Picture picture) {
+		// TODO Auto-generated method stub
+		begin();
+		picture.setDateAdded(new Date());
+		em.merge(picture);
+		
+	}
+
+	@Override
+	public void removePicture(int id) {
 		begin();
 			if(em != null)
 			{
@@ -66,7 +67,7 @@ public class PictureBean implements PictureBeanLocal,PictureBeanRemote{
 			
 		
 	
-	return false;
+	
 	}
 
 	@Override
@@ -150,6 +151,47 @@ public class PictureBean implements PictureBeanLocal,PictureBeanRemote{
 		
 		return pictures;
 	}
+
+
+	@Override
+	public List<Picture> findDesactivated(int pictureId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<Picture> findByUser(int pictureOwner) {
+		begin();
+		List<Picture> pictures = null;
+		if(em != null)
+		{
+			String query = String.format("select  u from Picture u where u.pictureOwner.id = %d", pictureOwner );
+			pictures =  (List<Picture>) em.createQuery(query).getResultList();
+			
+		}
+		
+		return pictures;
+	}
+
+
+	@Override
+	public List<Picture> findAllPictures() {
+		// TODO Auto-generated method stub
+		begin();
+		List<Picture> pictures = null;
+		if(em != null)
+		{
+			String query = String.format("select  u from Picture u" );
+			pictures =  (List<Picture>) em.createQuery(query).getResultList();
+			
+		}
+		
+		return pictures;
+	}
+
+
+	
 	
 	
 

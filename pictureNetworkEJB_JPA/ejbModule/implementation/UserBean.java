@@ -46,7 +46,7 @@ public class UserBean implements UserBeanRemote, UserBeanLocal {
     }
     //ok test
 	@Override
-	public boolean addUser(User user) {
+	public void addUser(User user) {
 		// TODO Auto-generated method stub`
 		
 		begin();
@@ -57,13 +57,10 @@ public class UserBean implements UserBeanRemote, UserBeanLocal {
 		if(em != null)
 		{
 			
-			em.persist(user);			
+			em.merge(user);			
 			
 			
-			return true;
 		}
-		
-		return false;
 	}
 
 	private void finish() {
@@ -78,13 +75,14 @@ public class UserBean implements UserBeanRemote, UserBeanLocal {
 		}
 	
 	//testing
+	@SuppressWarnings("unchecked")
 	@Override
 	public User authenticateUser(String first, String last, String Password) {
 		// TODO Auto-generated method stub
 		User user = null;
 		
 		String query = String.format("select  u from User u where u.firstName = '%s' and  u.lastName = '%s' and u.password = '%s'", first, last, Password);
-		List<User> users = em.createQuery(query).getResultList();
+		List<User> users = (List<User>) em.createQuery(query).getResultList();
 		if(users.size() >= 1)
 		{
 			user = users.get(0);
@@ -94,7 +92,7 @@ public class UserBean implements UserBeanRemote, UserBeanLocal {
 	}
 	
 	@Override
-	public boolean updateUser(User User) {
+	public void updateUser(User User) {
 		// TODO Auto-generated method stub
 		if(emf != null)
 		{
@@ -103,10 +101,10 @@ public class UserBean implements UserBeanRemote, UserBeanLocal {
 		if(em != null)
 		{
 			em.merge(User);
-			return true;
+			
 		}
 		
-		return false;
+		
 	}
 	
 	@Override

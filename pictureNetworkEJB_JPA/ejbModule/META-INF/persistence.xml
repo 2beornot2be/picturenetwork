@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
-	<persistence-unit name="pictureNetwork"  >
+	<persistence-unit name="pictureNetwork">
 		<jta-data-source>java:/jboss/datasources/pictureNetwork</jta-data-source>
 		<class>entities.Admin</class>
 		<class>entities.BadWorld</class>
@@ -15,7 +17,11 @@
 		<class>entities.SubCategory</class>
 		<class>entities.User</class>
 		<class>entities.Workshop</class>
-		<properties><property name="hibernate.hbm2ddl.auto" value="create"/><property name="hibernate.show_sql" value="true"/></properties>
+		<class>entities.EventComment</class>
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.show_sql" value="true" />
+		</properties>
 	</persistence-unit>
 </persistence>
-<!--  java:/jboss/datasources/MySQL1 -->
+<!-- java:/jboss/datasources/MySQL1 -->
