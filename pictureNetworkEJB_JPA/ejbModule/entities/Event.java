@@ -61,7 +61,7 @@ public class Event implements Serializable {
 		super();
 		this.topic = topic;
 		this.description = description;
-		this.eventDate = eventDate;
+		this.eventDate = new Date();
 		Owner = owner;
 		this.participants = participants;
 		this.eventComment = eventComment;
@@ -89,7 +89,7 @@ public class Event implements Serializable {
 		this.id = id;
 		this.topic = topic;
 		this.description = description;
-		this.eventDate = eventDate;
+		this.eventDate = new Date();
 		Owner = owner;
 		this.participants = participants;
 		this.eventComment = eventComment;
@@ -113,7 +113,7 @@ public class Event implements Serializable {
 		super();
 		this.topic = topic;
 		this.description = description;
-		this.eventDate = eventDate;
+		this.eventDate = new Date();
 		Owner = owner;
 		this.participants = participants;
 		this.setEventComment(eventComments);
@@ -129,7 +129,7 @@ public class Event implements Serializable {
 		this.id = id;
 		this.topic = topic;
 		this.description = description;
-		this.eventDate = eventDate;
+		this.eventDate = new Date();
 		Owner = owner;
 		this.participants = participants;
 		this.setEventComment(eventComments);
@@ -144,7 +144,7 @@ public class Event implements Serializable {
 		super();
 		this.topic = topic;
 		this.description = description;
-		this.eventDate = eventDate;
+		this.eventDate = new Date();
 		Owner = owner;
 		this.participants = participants;
 	}
@@ -159,7 +159,7 @@ public class Event implements Serializable {
 		this.id = id;
 		this.topic = topic;
 		this.description = description;
-		this.eventDate = eventDate;
+		this.eventDate = new Date();
 		Owner = owner;
 		this.participants = participants;
 	}
@@ -194,7 +194,7 @@ public class Event implements Serializable {
 	}
 
 	public void setEventDate(Date eventDate) {
-		this.eventDate = eventDate;
+		this.eventDate = new Date();
 	}
 
 
